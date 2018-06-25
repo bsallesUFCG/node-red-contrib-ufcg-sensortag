@@ -1,0 +1,31 @@
+{
+  "name": "node-red-contrib-ufcg-sensortag",
+  "version": "0.3.0",
+  "description": "A Node-RED node that uses Noble to interact with SensorTag Temperature and Humidity Sensors",
+  "dependencies": {
+    "noble": ">=0.2.7"
+  },
+  
+  "license": "",
+"repository": {
+    "type": "git",
+    "url": "https://github.com/bsallesUFCG/node-red-contrib-ufcg-sensortag"
+},
+  "keywords": [
+    "node-red",
+    "noble",
+    "ble",
+    "bluetooth",
+    "SensorTag"
+  ],
+  "node-red": {
+    "nodes": {
+      "noble": "node-red-contrib-ufcg-sensortag.js"
+    }
+  },
+  "author": {
+    "name": "Bruna Salles and Christian Charles Dias",
+    "email": "bruna.moreira@ee.ufcg.edu.br"
+  }
+  
+}
