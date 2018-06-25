@@ -1,0 +1,65 @@
+<script type="text/x-red" data-template-name="SensorTag">
+   <!-- data-template-name identifies the node type this is for              -->
+   <!-- Each of the following divs creates a field in the edit dialog.       -->
+   <!-- Generally, there should be an input for each property of the node.   -->
+   <!-- The for and id attributes identify the corresponding property        -->
+   <!-- (with the 'node-input-' prefix).                                     -->
+   <!-- The available icon classes are defined Twitter Bootstrap glyphicons  -->
+    <!-- Limit to list of UUIDs -->
+	<!-- By convention, most nodes have a 'name' property. The following div -->
+    <!-- provides the necessary field. Should always be the last option      -->
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>   
+
+   <div class="form-row">
+        <label for="node-input-uuids"><i class="fa fa-tasks"></i> Restrict by Service UUID</label>
+        <input type="text" id="node-input-uuids" placeholder="Comma separated list">
+    </div>
+    <div class="form-tips">Leave empty for scanning all devices offering any service.</div>
+    <!-- Allow duplicates -->
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-duplicates" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-duplicates" style="width: 70%;">Allow duplicates?</label>
+    </div>
+   
+</script>
+
+
+<!-- Next, some simple help text is provided for the node.                   -->
+<script type="text/x-red" data-help-name="SensorTag">
+    <p>A Node-RED node that uses Noble to interact with SensorTag Temperature and Humidity Sensors </p>
+	<p>Output 1: Humidity Sensor data </p>
+	<p>Output 2: Temperature Sensor data </p>
+</script>
+
+<!-- Finally, the node type is registered along with all of its properties   -->
+<!-- The example below shows a small subset of the properties that can be set-->
+
+<script type="text/javascript">
+    RED.nodes.registerType('SensorTag',{
+        category: 'UFCG SensorTag',      // the palette category
+        color:"#C0DEED",
+        defaults: {             // defines the editable properties of the node
+            uuids: {value:"", validate:RED.validators.regex(/^([a-fA-F0-9]{32}){0,1}(?:,[a-fA-F0-9]{32})*$/)},
+            duplicates: {value:false},
+            name: {value:""}
+        },
+        inputs:0,               // set the number of inputs - only 0 or 1
+        outputs:2,              // set the number of outputs - 0 to n
+        // set the icon (held in icons dir below where you save the node)
+        icon: "bluetooth.png",     // saved in  icons/myicon.png
+        label: function() {     // sets the default label contents
+            if (this.name) {
+                return this.name;
+            } else {
+                return "SensorTag";
+            }
+        },
+        labelStyle: function() { // sets the class to apply to the label
+            return this.name ? "node_label_italic" : "";
+        }
+    });
+</script>
